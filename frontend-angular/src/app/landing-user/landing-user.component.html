@@ -1,0 +1,132 @@
+<!-- <p>landing-user works!</p>
+User Status-{{approval}}<br>
+Vaccination Status-{{status}} -->
+
+<div class="container-xl px-4 mt-4" style="min-height: 100vh ;">
+    <!-- Account page navigation-->
+    <!-- <nav class="nav nav-borders">
+        <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
+        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page" target="__blank">Billing</a>
+        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
+        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"  target="__blank">Notifications</a>
+    </nav> -->
+    <!-- <hr class="mt-0 mb-4"> -->
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+
+                    <img class="img-account-profile rounded-circle mb-2" *ngIf="user.gender.toLowerCase() === 'male'"
+                        src="https://bootdey.com/img/Content/avatar/avatar7.png" width="30%" alt="...">
+                    <img class="img-account-profile rounded-circle mb-2" *ngIf="user.gender.toLowerCase() === 'female'"
+                        src="https://bootdey.com/img/Content/avatar/avatar3.png" width="30%" alt="...">
+
+                </div>
+                <div class="card-header">Name: {{user.fullName}}</div>
+                <div class="card-header">Contact: {{user.phoneNumber}}</div>
+                <div class="card-header">E-mail: {{user.userEmail}}</div>
+                <div class="card-header">Username: {{user.username}}</div>
+                <!-- <div class="card-header">Aadhar Number: {{users.aadharNumber}}</div>
+                <div class="card-header">Date of Birth: {{users.dob | date:'dd-MM-yyyy'}}</div>
+                <div class="card-header">Age: {{users.age}}</div>
+                <div class="card-header">Gender: {{users.gender}}</div> -->
+                <div class="card-header">Address: {{user.address}}</div>
+            </div>
+            <a routerLink="edit" class="btn btn-primary my-3" style="width: 100%;" type="button">Edit Profile</a>
+
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Status</div>
+                <div class="card-body">
+                    <div class="px-xl-10 d-flex flex-column justify-content-center gap-md-3 d-sm-flex flex-sm-row">
+                        <div class="d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded"
+                            [ngClass]="user.userStatus==='Reject'?'bg-danger':user.userStatus === 'pending'?'bg-warning':'bg-success'">
+                            <h3 class=" h2 text-white mb-0 font-title">{{user?.userStatus?.toUpperCase()}}</h3>
+                            <span class="text-light">My account status</span>
+                        </div>
+                        <div class="d-lg-inline-block py-1-9 px-1-9 pxsm-6 mb-1-9 rounded"
+                            [ngClass]="user.vaccinationStatus==='pending'?'bg-warning':'bg-success'">
+                            <h3 class=" h2 text-white mb-0 font-title">{{user?.vaccinationStatus?.toUpperCase()}}
+                            </h3>
+                            <span class="text-light">My vaccine status</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="font-weight-bold" style="top: 4rem; text-align: center;"
+                *ngIf="user?.userStatus.toLowerCase() !== 'accept'">
+                Your application is currently being reviewed. Once done, you can select a vaccine and center.
+            </p>
+            <div class="">
+                <div class="card mb-4" [ngClass]="user?.userStatus.toLowerCase() === 'accept' ? null :'blur'">
+                    <div class="card-header">Schedule your vaccination <span class="text-success">({{daysLeft}} days
+                            left
+                            for your
+                            appointment)</span></div>
+                    <div class="card-body" *ngIf="!displayVaccinationAppointment">
+                        <div class="px-xl-10 d-flex flex-column justify-content-center gap-md-3 d-sm-flex flex-sm-row">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" [ngClass]="centerClass"
+                                    [disabled]="user?.userStatus.toLowerCase() !== 'accept'" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{selectedCenterValue}}
+                                </button>
+                                <div class="dropdown-menu scale-off" aria-labelledby="dropdownMenuButton"
+                                    aria-expanded="true">
+                                    <a class="dropdown-item" *ngFor="let center of centers;" role="button"
+                                        (click)="onCenterSelect(center?.centerId, center?.centerName)">
+                                        {{center.centerName}}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-warning dropdown-toggle"
+                                    [ngClass]="selectedVaccineId !== undefined ? 'schedule-success' : 'schedule-warning'"
+                                    [disabled]="selectedCenterId === undefined" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{selectedVaccineValue}}</button>
+                                <div class="dropdown-menu scale-off" aria-labelledby="dropdownMenuButton"
+                                    aria-expanded="true">
+                                    <a class="dropdown-item" *ngFor="let vaccine of vaccines;" role="button"
+                                        (click)="onVaccineSelect(vaccine?.vaccineId, vaccine?.vaccineName)">
+                                        {{vaccine?.vaccineName}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-4">
+                            <button class="btn btn-light scale-up"
+                                [disabled]="(user?.userStatus.toLowerCase() !== 'accept') || (selectedCenterId === undefined || selectedVaccineId === undefined)"
+                                type="submit" (click)="onScheduleVaccination()">
+                                Schedule my vaccination
+                                <img class="mx-1" src="../../assets/icons/rocket.svg" width="15px" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body scale-in-center" *ngIf="displayVaccinationAppointment">
+                        <p *ngIf="user?.vaccinationStatus?.toLowerCase() !== 'vaccinated'">
+
+                            Congratulations! Your appointment is all set. Your selected center is <span
+                                class="font-weight-bold underline">{{userCenter?.centerName}}
+                                - {{userCenter?.centerAddress}}, {{userCenter?.centerDistrict}}</span>. Your
+                            preffered vaccination is <span
+                                class="font-weight-bold underline">{{userVaccine?.vaccineName}}</span>. Your appointment
+                            is on <span class="font-weight-bold underline">
+                                {{formatDate(user?.vaccinationDate, "dd MMMM, yyyy", "en-US")}}
+                            </span>.
+                        </p>
+                        <p *ngIf="user?.vaccinationStatus?.toLowerCase() === 'vaccinated'">
+                            You are now <span class="font-weight-bold underline">fully vaccinated</span>. We thank you
+                            for your participation.
+
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>

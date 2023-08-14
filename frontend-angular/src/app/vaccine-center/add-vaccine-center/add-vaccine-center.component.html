@@ -1,0 +1,77 @@
+<div class="container-xl px-4 mt-4" style="min-height: 80vh;">
+  <!-- <hr class="mt-0 mb-4"> -->
+  <div class="row my-auto">
+    <form #emp1Form="ngForm" (ngSubmit)="onSubmit(emp1Form.value)" class="d-flex flex-column d-sm-flex flex-sm-row">
+      <div class="col-xl-8">
+        <!-- Account details card-->
+        <div class="card mb-4">
+          <div class="card-header">Add Center Details</div>
+          <div class="card-body">
+
+            <!-- Form Group (username)-->
+
+
+            <div class="form-floating mb-2">
+              <input type="text" id="username" name="centerName" placeholder="Enter Name"
+                [(ngModel)]="center.centerName" class="form-control form-control-lg cvs-input" required />
+              <label style="background-color: transparent;" for="centerName">Enter Name</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="text" id="centerAddress" name="centerAddress" placeholder="Enter Address"
+                [(ngModel)]="center.centerAddress" class="form-control form-control-lg cvs-input" required />
+              <label style="background-color: transparent;" for="centerAddress">Enter Address</label>
+            </div>
+            <div class="d-flex justify-content-between gap-1">
+              <div class="form-floating mb-2 ">
+                <input type="text" id="centerDistrict" name="centerDistrict" placeholder="Enter District"
+                  [(ngModel)]="center.centerDistrict" class="form-control form-control-lg cvs-input" required />
+                <label style="background-color: transparent;" for="centerDistrict">Enter District</label>
+              </div>
+              <div class="form-floating mb-2">
+                <input type="text" id="centerPinCode" name="centerPinCode" placeholder="Enter Pincode"
+                  [(ngModel)]="center.centerPinCode" class="form-control form-control-lg cvs-input" required />
+                <label style="background-color: transparent;" for="centerPinCode">Enter Pincode</label>
+              </div>
+            </div>
+            <!-- Form Row-->
+
+            <!-- Form Row        -->
+
+
+            <!-- Save changes button-->
+
+
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4">
+        <!-- Profile picture card-->
+        <div class="card mb-4 mb-xl-0">
+          <div class="card-header">Add Vaccine Details</div>
+          <div class="card-body">
+            <div class="form-floating mb-2">
+              <input type="text" id="vaccineName" name="vaccineName" placeholder="Enter Name"
+                [(ngModel)]="center.vaccineName" class="form-control form-control-lg cvs-input" required />
+              <label style="background-color: transparent;" for="vaccineName">Enter Name</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="text" id="vaccinePrice" name="vaccinePrice" placeholder="Enter Price"
+                [(ngModel)]="center.vaccinePrice" class="form-control form-control-lg cvs-input" required />
+              <label style="background-color: transparent;" for="vaccinePrice">Enter Price</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="text" id="vaccineQuantity" name="vaccineQuantity" placeholder="Enter Quantity"
+                [(ngModel)]="center.vaccineQuantity" class="form-control form-control-lg cvs-input" required />
+              <label style="background-color: transparent;" for="vaccineQuantity">Enter Quantity</label>
+            </div>
+
+            <hr>
+            <div class="d-flex gap-3">
+              <button class="btn btn-primary " type="submit" [disabled]="!emp1Form.form.valid">Save Changes</button>
+              <button class="btn " type="reset">Reset Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

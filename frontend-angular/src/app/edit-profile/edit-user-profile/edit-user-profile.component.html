@@ -1,0 +1,98 @@
+<div class="container-xl px-4 mt-4" style="min-height: 100vh;">
+    <!-- <hr class="mt-0 mb-4"> -->
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img class="img-account-profile rounded-circle mb-2" *ngIf="users.gender.toLowerCase() === 'male'"
+                        src="http://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                    <img class="img-account-profile rounded-circle mb-2" *ngIf="users.gender.toLowerCase() === 'female'"
+                        src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                    <!-- Profile picture help block-->
+                    <!-- <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div> -->
+                    <!-- Profile picture upload button-->
+                    <!-- <button class="btn btn-primary" type="button">Upload new image</button> -->
+
+                </div>
+                <div class="card-header">Name: {{users.fullName}}</div>
+                <div class="card-header">Contact: {{users.phoneNumber}}</div>
+                <div class="card-header">E-mail: {{users.userEmail}}</div>
+                <div class="card-header">Username: {{users.username}}</div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form #emp1Form="ngForm" (ngSubmit)="onSubmit(emp1Form.value)">
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputfullName">Full Name</label>
+                            <input class="form-control" id="inputfullName" type="text" name="fullName"
+                                placeholder="Enter your full name" [(ngModel)]="users.fullName">
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">Date of Birth</label>
+                                <input type="date" name="dob" class="form-control" id="Date" [(ngModel)]="users.dob"
+                                    placeholder="" required>
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Phone number</label>
+                                <input class="form-control" id="inputPhone" type="text" name="phoneNumber"
+                                    placeholder="Enter your phone number" [(ngModel)]="users.phoneNumber">
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputAadharNumber">Aadhar Number</label>
+                                <input class="form-control" id="inputAadharNumber" type="text" name="aadharNumber"
+                                    placeholder="Enter your Aadhar Number" [(ngModel)]="users.aadharNumber">
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <h6 class="mb-2 pb-1">Gender: </h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        [(ngModel)]="users.gender" id="femaleGender" value="Female"
+                                        (change)="onChange($event)" checked />
+                                    <label class="form-check-label" for="femaleGender">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        [(ngModel)]="users.gender" id="maleGender" value="Male"
+                                        (change)="onChange($event)" />
+                                    <label class="form-check-label" for="maleGender">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        [(ngModel)]="users.gender" id="otherGender" value="Other"
+                                        (change)="onChange($event)" />
+                                    <label class="form-check-label " for="otherGender">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputAddress">Address</label>
+                            <input class="form-control" id="inputAddress" name="address" type="text"
+                                placeholder="Enter your address" [(ngModel)]="users.address">
+                        </div>
+
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

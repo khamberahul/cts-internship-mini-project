@@ -1,0 +1,123 @@
+<div style="position: relative;">
+  <div class="bg-blur"></div>
+
+  <section class="vh-100 gradient-custom div-class">
+    <div class="container py-4 h-100 unblur">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration"
+            style="border-radius: 15px; border: 2px solid white; background: #fafafa;">
+            <div class="card-body p-4">
+              <h1>Covid Vaccination Portal</h1>
+              <h5 class="mb-4">Registration</h5>
+              <form #empForm="ngForm" class="was-validated" (ngSubmit)="onSubmit(empForm.value)">
+                <div class="row">
+                  <div class="col-lg mb-2">
+                    <div class="form-floating">
+                      <input type="text" id="fullName" class="form-control form-control-lg cvs-input"
+                        placeholder="Fullname" name="fullName" [(ngModel)]="fullName" required />
+                      <label class="text-black" style="background-color: transparent;" for="fullName">Full Name</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-2">
+                    <div class="form-floating">
+                      <input type="text" id="aadharNumber" class="form-control form-control-lg cvs-input"
+                        placeholder="Aadhar Number" name="aadharNumber" [(ngModel)]="aadharNumber"
+                        pattern="[0-9]{4}[0-9]{4}[0-9]{4}" required />
+                      <label class="text-black" style="background-color: transparent;" for="aadharNumber">Aadhar
+                        Number</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="form-floating">
+                      <input type="tel" id="phoneNumber" class="form-control form-control-lg cvs-input"
+                        placeholder="Contact Number" name="phoneNumber" [(ngModel)]="phoneNumber" pattern="[0-9]{10}"
+                        required />
+                      <label class="text-black" style="background-color: transparent;" for="phoneNumber">Contact
+                        Number</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-2">
+                    <div class="form-floating">
+                      <input type="date" name="dob" class="form-control" id="Date" [(ngModel)]="dob" placeholder=""
+                        required>
+                      <label class="text-black" style="background-color: transparent;" for="Date">Date Of Birth</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <h6 class="mb-2 pb-1">Gender: </h6>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input cvs-input" type="radio" name="gender" [(ngModel)]="gender"
+                        id="femaleGender" value="Female" (change)="onChange($event)" checked />
+                      <label class="form-check-label" for="femaleGender">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input cvs-input" type="radio" name="gender" [(ngModel)]="gender"
+                        id="maleGender" value="Male" (change)="onChange($event)" />
+                      <label class="form-check-label" for="maleGender">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input cvs-input" type="radio" name="gender" [(ngModel)]="gender"
+                        id="otherGender" value="Other" (change)="onChange($event)" />
+                      <label class="form-check-label " for="otherGender">Other</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg mb-2">
+                    <div class="form-floating">
+                      <input type="text" id="address" placeholder="Address" name="address" [(ngModel)]="address"
+                        class="form-control form-control-lg cvs-input" required />
+                      <label class="text-black" style="background-color: transparent;" for="address">Address</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-2">
+                    <div class="form-floating">
+                      <input type="text" id="username" placeholder="Username" name="username" [(ngModel)]="username"
+                        class="form-control form-control-lg cvs-input" required />
+                      <label class="text-black" style="background-color: transparent;" for="username">Username</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="form-floating">
+                      <input type="email" id="emailAddress" placeholder="Email" name="userEmail" [(ngModel)]="userEmail"
+                        class="form-control form-control-lg cvs-input" required />
+                      <label class="text-black" style="background-color: transparent;" for="emailAddress">Email</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg mb-2  pb-2">
+                    <div class="form-floating">
+                      <input [type]="passwordVisible ? 'text' : 'password'" id="password" placeholder="Password"
+                        name="userPassword" [(ngModel)]="userPassword" class="form-control form-control-lg cvs-input"
+                        required />
+                      <label class="text-black" style="background-color: transparent;" for="password">Password</label>
+                    </div>
+                    <button class="btn btn-link position-absolute" style="top: 0.6rem; right: 3rem;"
+                      (click)="passwordVisibilityToggle()">
+                      <img *ngIf="!passwordVisible" src="../../assets/icons/eye-closed.svg" width="15px" />
+                      <img *ngIf="passwordVisible" src="../../assets/icons/eye-open.svg" width="15px" /></button>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center mt-2 ">
+                  <button class="btn btn-primary scale-up" type="submit"
+                    [disabled]="!empForm.form.valid">Register</button> &nbsp;
+                  <input class="btn btn-link" type="reset" value="Reset">
+                </div>
+                <p class="d-flex justify-content-center my-2">Already have an account? <a href="/login" class=""> Log in
+                  </a> here</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

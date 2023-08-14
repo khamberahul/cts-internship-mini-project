@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom px-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="cursor: default;" (mouseover)="triggerHover()" (mouseout)="triggerHover()">
+      <span>
+        <img class="man" src="../../assets/man-avatar.png" width="40px" />
+        <img [ngClass]="isHover ? 'slide-in-tr' : null " class="syringe" style="margin-left: -8px;"
+          src="../../assets/syringe.png" width="20px" />
+      </span>
+      <span [ngClass]="isHover ? 'reduce-opacity' : null" style="margin: 0px 4px;">
+        Covid Vaccine Scheduler
+      </span>
+    </a>
+  </div>
+
+  <img src="../../assets/icons/hamburger-menu.svg" width="20px" class="hamburger-menu"
+    (click)="toggleNavbarCollapsing()" />
+
+  <div [class.collapse]="navbarCollapsed" class="navbar-collapse navbar-responsive-carousel"
+    id="navbarSupportedContent">
+
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2 flex-row">
+      <li class="nav-item" *ngIf="!logged">
+        <a class="btn btn-light border-0 d-flex gap-2" href="/register" role="button">
+          Register
+          <img src="../../assets/icons/register-svgrepo-com.svg" width="15px" />
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="!logged">
+        <a class="btn btn-light border-0 d-flex gap-2" href="/login" role="button">
+          Login
+          <img src="../../assets/icons/arrow-top-right.svg" width="15px" />
+        </a>
+      </li>
+
+
+      <!-- Commented for now -->
+      <!-- <li class="nav-item dropdown" *ngIf="logged">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            My profile
+          </button>
+          <div class="dropdown-menu scale-off" aria-labelledby="dropdownMenuButton" aria-expanded="true">
+            <a class="dropdown-item">
+              Settings
+            </a>
+            <a class="dropdown-item">
+              Logout
+            </a>
+          </div>
+        </div>
+      </li> -->
+
+      <li class="nav-item" *ngIf="logged">
+        <a class="d-flex gap-2 btn btn-link text-secondary" style="text-decoration: none; cursor: default;">
+          Welcome,&nbsp;{{userName}}
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="logged">
+        <a class="btn btn-light border-0 d-flex gap-2" (click)="handleHomeClick()" role="button">
+          Home
+          <img src="../../assets/icons/home.svg" width="12px" />
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="logged">
+        <a class="btn btn-light border-0 d-flex gap-2" (click)="logout()" role="button">
+          Logout
+          <img src="../../assets/icons/arrow-top-right.svg" width="12px" />
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-light border-0 d-flex gap-2" routerLink="aboutus" role="button">
+          About
+          <img src="../../assets/icons/heart.svg" width="10px" />
+        </a>
+      </li>
+
+
+    </ul>
+
+  </div>
+
+
+
+</nav>

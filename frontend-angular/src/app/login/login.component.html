@@ -1,0 +1,61 @@
+<div style="position: relative;">
+  <div class="bg-blur"></div>
+
+  <div class="div-class">
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration"
+              style="border-radius: 15px; background-color: white; border: 2px solid white;">
+              <div class="card-body p-4 p-md-5">
+                <h1 class="">Covid Vaccination Portal</h1>
+                <h5 class="mb-4 pb-2 pb-md-0 mb-md-5">Log in</h5>
+                <form #empForm="ngForm" class="was-validated">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 mb-2">
+                      <div class="form-floating">
+                        <input type="text" id="username" name="userName" [(ngModel)]="userName" placeholder="Username"
+                          class="form-control form-control-lg cvs-input" required />
+                        <label style="background-color: transparent;" for="username">Username</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 mb-2 pb-2 position-relative">
+                      <div class="form-floating">
+                        <input [type]="passwordVisible ? 'text' : 'password'" id="password" name="password"
+                          [(ngModel)]="password" placeholder="Password" class="form-control form-control-lg cvs-input"
+                          required />
+                        <label style="background-color: transparent;" for="password">Password</label>
+                      </div>
+                      <button class="btn btn-link position-absolute" style="top: 0.6rem; right: 3rem;"
+                        (click)="passwordVisibilityToggle()">
+                        <img *ngIf="!passwordVisible" src="../../assets/icons/eye-closed.svg" width="15px" />
+                        <img *ngIf="passwordVisible" src="../../assets/icons/eye-open.svg" width="15px" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="row d-flex justify-content-center">
+
+                    <div class="col-md-2 mb-2  pb-2">
+                      <button class="btn btn-primary scale-up" type="submit" (click)="onSubmit(empForm.value)"
+                        [disabled]="!empForm.form.valid" ngModel>Login</button>
+                      &nbsp;
+                      <!-- <input class="btn btn-primary" type="reset" value="Reset"> -->
+                    </div>
+                    {{errorStatus}}
+                  </div>
+                  <p class="d-flex justify-content-center">Don't have an account?<span><a href="/register"
+                        class="">Register</a></span> here</p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

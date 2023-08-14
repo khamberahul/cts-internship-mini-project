@@ -1,0 +1,16 @@
+.border-bottom {
+    border-bottom: 2px solid rgb(66, 66, 66) !important;    
+}
+
+.hamburger-menu {
+    display: block;
+    position: absolute;
+    right: 30px;
+    top:20px;
+}
+
+@media (min-width: 768px) { 
+    .hamburger-menu {
+        display: none;
+    }
+}

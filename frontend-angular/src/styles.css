@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Patua+One&display=swap');
+@import 'ngx-toastr/toastr';
+
+@import url('animations.css');
+
+*{
+    /* background-color: whitesmoke; */
+    font-family: 'Inter', sans-serif;
+    border-radius: 5px !important;
+}
+
+.font-title {
+    font-family: 'Bungee', cursive;
+
+}
+
+th, td {
+    border-radius: 0px !important;
+}
+
+/* Remove the external boundary from inputs when clicked on them */
+.cvs-input:focus {
+    border: 2px solid !important; 
+    border-color:rgb(0, 0, 0) !important;
+    outline:0 !important;
+    -webkit-box-shadow:none !important;
+    box-shadow:none !important;
+}
+
+.cvs-menu {
+    position: absolute;
+    background-color: white;
+    text-align: center;
+    width: 150%;
+    padding: 6px 0;
+    border-radius: 15px;
+    background-color: rgb(230, 230, 230);
+
+}
+
+.cvs-menu-item {
+    background-color: rgb(215, 215, 215);
+    border: none;
+    border-radius: 0 !important;
+    text-decoration: none;
+    color: black;
+    border-top: 1px solid rgb(230, 230, 230);
+    margin-bottom: 3px;
+}
+
+.cvs-menu-item:hover {
+    border: none;
+    border-radius: 0 !important;
+    background-color: rgb(233, 233, 233);
+    color: black;
+}
+
+.bg-blur {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(4px);
+    background-image: url("../src/assets/orange-acrylic-paint-textured-background.jpg");
+  }
+
+
+.toast-container {
+    position: fixed !important;
+    top: 2rem !important;
+    right: 2rem !important;
+}
+
+button {
+    outline:0!important;
+    -webkit-box-shadow:none !important;
+    box-shadow:none !important;
+}
+
+.bg-accept-faint {
+    background: #d1ffdf !important;
+}
+
+.bg-reject-faint {
+    background: #ffd2cf !important;
+}
+
+.bg-pending-faint {
+    background: #fffadb !important;
+}

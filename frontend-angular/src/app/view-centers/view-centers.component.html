@@ -1,0 +1,213 @@
+<section class="d-flex flex-column" style="min-height: 100vh;">
+
+    <!-- Modal form for editing vaccine center details -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Inventory for
+                        <span style="font-weight: 600;">{{clickedCenter?.centerName}}</span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- <p>
+                            <span style="font-weight: 600;"> </span>{{clickedCenter?.detailsList}}
+                        </p> -->
+                    <div class="">
+                        <label style="background-color: transparent;" for="username">Center name</label>
+                        <input type="text" id="centerName" name="centerName" [(ngModel)]="clickedCenter.centerName"
+                            class=" form-control form-control-lg
+                            cvs-input" required />
+                    </div>
+
+                    <div class="view-inventory">
+                        <label style="background-color: transparent;" class="mt-4" for="username">Inventory</label>
+                        <div *ngFor="let detail of clickedCenter?.detailsList" class="cvs-detail-holder">
+                            <tr style="border: none; margin-bottom:3px;" class="d-flex justify-content-between">
+
+                                <td class="font-weight-bold" style=" border: none;">
+                                    Vaccine name</td>
+                                <td>
+                                    <input type="text" id="vaccinename" name="vaccineName" class="form-control
+                                        cvs-input" [(ngModel)]="detail.vaccineName" required />
+                                </td>
+                            </tr>
+                            <tr style="border: none; margin-bottom:3px;" class="d-flex justify-content-between">
+                                <td class=" font-weight-bold">Vaccine price</td>
+                                <td>
+                                    <input type="text" id="vaccineprice" name="vaccinePrice" class="form-control
+                                        cvs-input" [(ngModel)]="detail.vaccinePrice" required />
+                                </td>
+                            </tr>
+                            <tr style="border: none; margin-bottom:3px;" class="d-flex justify-content-between">
+                                <td class=" font-weight-bold">Vaccine quantity</td>
+                                <td>
+                                    <input type="text" id="vaccinequantity" name="vaccineQuantity" class="form-control
+                                    cvs-input" [(ngModel)]="detail.vaccineQuantity" required />
+                                </td>
+                            </tr>
+                            <section class="d-flex justify-content-end">
+                                <button type="button" class="btn"
+                                    (click)="onDeleteInventory(clickedCenter?.centerId, detail?.vaccineId)">
+                                    <img src="../../assets/icons/delete-2-svgrepo-com.svg" width="18px" />
+                                </button>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                        (click)="onEditCenter(clickedCenter?.centerId)">Save details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for confirming if the user wants to delete a record -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Are you sure you want to delete
+                        <span style="font-weight: 600;">
+                            {{clickedCenter?.centerName}}?
+                        </span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        (click)="onDelete(clickedCenter?.centerId)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel" (click)="addVaccine(clickedCenter?.centerId)">
+                        Fill out the inventory
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="">
+                        <label style="background-color: transparent;" for="username">Vaccine name</label>
+                        <input type="text" id="centerName" name="centerName" [(ngModel)]="vaccine.vaccineName" class=" form-control form-control-lg
+                        cvs-input" required />
+                        <div class="">
+                            <label style="background-color: transparent;" for="username">Vaccine price</label>
+                            <input type="number" id="centerName" name="centerName" [(ngModel)]="vaccine.vaccinePrice"
+                                class=" form-control form-control-lg
+                            cvs-input" required />
+                        </div>
+                        <div class="">
+                            <label style="background-color: transparent;" for="username">Vaccine quantity</label>
+                            <input type="number" id="centerName" name="centerName" [(ngModel)]="vaccine.vaccineQuantity"
+                                class=" form-control form-control-lg
+                            cvs-input" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-success" data-dismiss=""
+                        (click)="addVaccine(clickedCenter?.centerId)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="my-2 mx-auto">Vaccination centers</h3>
+    <section class="d-flex justify-content-center">
+        <button type="button" class="btn btn-primary mx-auto my-4" (click)="addCenter()" style="max-width: 10rem;">
+            Add a new center</button>
+    </section>
+
+    <div class="container">
+
+        <input class="form-control mb-3 cvs-input" type="text" placeholder="Search by name, location or center ID"
+            [(ngModel)]="tableSearch" />
+
+        <!-- <div class="form-check form-check-inline mb-3">
+            <input class="form-check-input" type="checkbox" name="all" value="All" (ngModelChange)="filterChange()"
+                [(ngModel)]="filter.all" />
+            <label class="form-check-label">All</label>
+        </div>
+
+        <div class="form-check form-check-inline  mb-3">
+            <input class="form-check-input" type="checkbox" name="pending" value="Pending"
+                (ngModelChange)="filterChange()" [(ngModel)]="filter.pending" />
+            <label class="form-check-label">Pending</label>
+        </div>
+
+        <div class="form-check form-check-inline  mb-3">
+            <input class="form-check-input" type="checkbox" name="accepted" value="Accepted"
+                (ngModelChange)="filterChange()" [(ngModel)]="filter.accepted" />
+            <label class="form-check-label">Accepted</label>
+        </div> -->
+
+        <table class="table table-bordered ">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="width: 10%;" scope="col">ID</th>
+                    <th scope="col">Center name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col">Pincode</th>
+                    <th scope="col">Inventory</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let center of centers | viewUsers: tableSearch; let srNo=index;">
+                    <th class="align-middle" scope="row">{{center.centerId}}</th>
+                    <td class="align-middle">{{center.centerName}}</td>
+                    <td class="align-middle">{{center.centerAddress}}, {{center.centerDistrict}}</td>
+                    <!-- <td>
+                        <div>
+                            <button type="button" class="btn btn-link" (click)="setClickedCenter(center.centerId)"
+                                data-toggle="modal" data-target="#exampleModal">
+                                <img src="../../assets/icons/file-text.svg" width="20px" />
+                            </button>
+                        </div>
+                    </td> -->
+                    <td class="align-middle">
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="button" class="btn btn-outline-success"
+                                (click)="setClickedCenter(center.centerId)" data-toggle="modal"
+                                data-target="#exampleModal">
+                                Edit
+                            </button>
+                            <button type="button" class="btn text-danger" (click)="setClickedCenter(center.centerId)"
+                                data-toggle="modal" data-target="#deleteModal">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                    <td class="align-middle">{{center.centerPinCode}}</td>
+                    <td class="align-middle"><button type="button" class="btn btn-primary mx-auto my-4"
+                            data-toggle="modal" data-target="#addModal" style="max-width: 10rem;"
+                            (click)="setClickedCenter(center?.centerId)">Add vaccine</button></td>
+                </tr>
+                <tr>
+            </tbody>
+        </table>
+    </div>
+</section>
